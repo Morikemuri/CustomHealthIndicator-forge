@@ -1,0 +1,24 @@
+modLoader="javafml"
+loaderVersion="[36,)"
+license="All rights reserved"
+
+[[mods]]
+modId="customhealthindicator"
+version="1.5"
+displayName="CustomHealthIndicator"
+authors="Matvey Slotvinskiy, Gabrielsim (Forge port & improvements)"
+description="Health indicator HUD + colored nametags. Forge 1.16.5."
+
+[[dependencies.customhealthindicator]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.customhealthindicator]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.5,1.17)"
+    ordering="NONE"
+    side="CLIENT"

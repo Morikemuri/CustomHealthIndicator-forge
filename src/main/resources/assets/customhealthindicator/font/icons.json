@@ -1,0 +1,11 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "customhealthindicator:font/heart.png",
+      "ascent": 7,
+      "height": 8,
+      "chars": ["\uE001"]
+    }
+  ]
+}
