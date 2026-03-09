@@ -1,11 +1,9 @@
 package hw.zako.zakohealthindicator.client;
 
-import hw.zako.zakohealthindicator.Config;
 import hw.zako.zakohealthindicator.client.ui.HealthBarGUI;
 import hw.zako.zakohealthindicator.client.ui.SettingsScreen;
 import hw.zako.zakohealthindicator.util.ColorUtil;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -13,13 +11,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.Color;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.event.TickEvent;
-import org.lwjgl.glfw.GLFW;
 
 public class ClientEvents {
 
@@ -85,23 +81,4 @@ public class ClientEvents {
         }
     }
 
-    @SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent e) {
-        if (e.getAction() != GLFW.GLFW_PRESS && e.getAction() != GLFW.GLFW_REPEAT) return;
-        if (Minecraft.getInstance().screen != null) return;
-        if (!Screen.hasShiftDown()) return;
-
-        Config cfg = Config.get();
-        int    key = e.getKey();
-
-        if (key == GLFW.GLFW_KEY_EQUAL) {
-            cfg.setFlyingScale(cfg.getFlyingScale() + 0.25f);
-        } else if (key == GLFW.GLFW_KEY_MINUS) {
-            cfg.setFlyingScale(cfg.getFlyingScale() - 0.25f);
-        } else if (key == GLFW.GLFW_KEY_KP_ADD) {
-            cfg.setBigScale(cfg.getBigScale() + 0.25f);
-        } else if (key == GLFW.GLFW_KEY_KP_SUBTRACT) {
-            cfg.setBigScale(cfg.getBigScale() - 0.25f);
-        }
-    }
 }
