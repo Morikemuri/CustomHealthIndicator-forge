@@ -2,6 +2,7 @@ package hw.zako.zakohealthindicator.client;
 
 import hw.zako.zakohealthindicator.Config;
 import hw.zako.zakohealthindicator.client.ui.HealthBarGUI;
+import hw.zako.zakohealthindicator.client.ui.SettingsScreen;
 import hw.zako.zakohealthindicator.util.ColorUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.Screen;
@@ -17,6 +18,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderNameplateEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.event.TickEvent;
 import org.lwjgl.glfw.GLFW;
 
 public class ClientEvents {
@@ -72,6 +74,15 @@ public class ClientEvents {
     public void onHudRender(RenderGameOverlayEvent.Post e) {
         if (e.getType() != RenderGameOverlayEvent.ElementType.ALL) return;
         hud.render(e.getMatrixStack());
+    }
+
+    @SubscribeEvent
+    public void onClientTick(TickEvent.ClientTickEvent e) {
+        if (e.phase != TickEvent.Phase.END) return;
+        Minecraft mc = Minecraft.getInstance();
+        if (mc.screen == null && KeyBindings.OPEN_SETTINGS.consumeClick()) {
+            mc.setScreen(new SettingsScreen(null));
+        }
     }
 
     @SubscribeEvent
