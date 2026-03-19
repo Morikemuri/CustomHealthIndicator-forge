@@ -7,7 +7,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.Color;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
@@ -19,9 +18,7 @@ import net.minecraftforge.event.TickEvent;
 
 public class ClientEvents {
 
-    private static final char             HEART_CHAR = '\uE001';
-    private static final ResourceLocation FONT_ID    =
-            new ResourceLocation("customhealthindicator", "icons");
+    private static final char HEART_CHAR = '\u2665';
 
     private static final HealthBarGUI hud = new HealthBarGUI();
 
@@ -48,16 +45,12 @@ public class ClientEvents {
                 ? Color.fromRgb(ColorUtil.animatedColor(pct))
                 : Color.fromLegacyFormat(ColorUtil.getColor(pct));
 
-        ITextComponent numPart = new StringTextComponent(" " + String.format("%.1f", hp))
+        ITextComponent hpPart = new StringTextComponent(" " + String.format("%.1f", hp))
                 .withStyle(style -> style.withColor(color));
-
-        ITextComponent heartPart = new StringTextComponent(String.valueOf(HEART_CHAR))
-                .withStyle(style -> style.withFont(FONT_ID).withColor(color));
 
         e.setContent(new StringTextComponent("")
                 .append(e.getContent())
-                .append(numPart)
-                .append(heartPart));
+                .append(hpPart));
     }
 
     @SubscribeEvent

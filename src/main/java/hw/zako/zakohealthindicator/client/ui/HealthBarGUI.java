@@ -80,11 +80,11 @@ public class HealthBarGUI {
         // Big HP number below crosshair
         {
             long el = now - attackTime;
-            if (el >= 0L && el <= 10000L) {
+            if (el >= 0L && el <= 2000L) {
                 float hp = target.getHealth();
-                if (hp > 0f && hp <= 5f) {
+                if (hp > 0f) {
                     String txt   = String.valueOf((int) Math.ceil(hp));
-                    float  alpha = el > 9000L ? 1f - (el - 9000f) / 1000f : 1f;
+                    float  alpha = el > 1500L ? 1f - (el - 1500f) / 500f : 1f;
                     int    a     = (int)(alpha * 255) & 0xFF;
                     int    color = (a << 24) | 0xFF3030;
                     float  scale = 4f * Config.get().getBigScale();

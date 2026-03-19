@@ -10,10 +10,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(PlayerRenderer.class)
 public class MixinPlayerRenderer {
 
-    /**
-     * Return null from getDisplayObjective so the scoreboard block in
-     * PlayerRenderer.renderNameTag is skipped entirely — no text under the nameplate.
-     */
     @Redirect(
         method = "renderNameTag",
         at = @At(
@@ -21,7 +17,7 @@ public class MixinPlayerRenderer {
             target = "Lnet/minecraft/scoreboard/Scoreboard;getDisplayObjective(I)Lnet/minecraft/scoreboard/ScoreObjective;"
         )
     )
-    private ScoreObjective suppressScoreboardBelowName(Scoreboard scoreboard, int slot) {
+    private ScoreObjective suppressScoreboardHearts(Scoreboard scoreboard, int slot) {
         return null;
     }
 }
